@@ -7,6 +7,7 @@ function Item(name, sell_in, quality) {
 var items = [];
 
 function update_quality() {
+  // make sure quality doesn't go out of range
   function updateQuality(quality, n) {
     const q = quality + n;
     switch (true) {
@@ -45,6 +46,14 @@ function update_quality() {
             item.quality = item.quality = 0;
             break;
         }
+        item.sell_in--;
+        break;
+
+      case "Conjured Mana Cake":
+        item.quality =
+        item.sell_in > 0
+          ? updateQuality(item.quality, -2)
+          : updateQuality(item.quality, -4);
         item.sell_in--;
         break;
 

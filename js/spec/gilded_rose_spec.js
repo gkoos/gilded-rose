@@ -87,4 +87,18 @@ describe("Gilded Rose", function() {
       expect(items[0].quality).toEqual(50);
     });
   });
+
+  describe("Conjure", function() {
+    it("should lower quality by 2", function() {
+      items = [ new Item('Conjured Mana Cake', 3, 6) ];
+      update_quality();
+      expect(items[0].quality).toEqual(4);
+    });
+
+    it("should lower quality by 4 once sell in date is reached", function() {
+      items = [ new Item('Conjured Mana Cake', 2, 10) ];
+      Array(3).fill().map(update_quality);
+      expect(items[0].quality).toEqual(2);
+    });
+  });
 });
